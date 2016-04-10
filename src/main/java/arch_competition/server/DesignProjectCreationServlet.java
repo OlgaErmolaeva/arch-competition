@@ -45,7 +45,7 @@ public class DesignProjectCreationServlet extends HttpServlet {
 
             final String fileName = req.getParameter("name");
 
-            Path picturesDirectory = Paths.get(ServerConstants.DATA_DIR, "pictures");
+            Path picturesDirectory = Paths.get(ServerSettingsFactory.getServerSettings().getDataDir(), "pictures");
             if (!Files.exists(picturesDirectory)) {
                 Files.createDirectory(picturesDirectory);
             }

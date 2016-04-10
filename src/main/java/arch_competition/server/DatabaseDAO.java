@@ -2,20 +2,20 @@ package arch_competition.server;
 
 
 import arch_competition.shared.DesignProject;
-import com.sun.corba.se.spi.activation.Server;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
  */
 public class DatabaseDAO implements MyDAO {
 
+    private ServerSettings serverSettings = ServerSettingsFactory.getServerSettings();
+
     @Override
     public ArrayList<DesignProject> read() {
         try {
-            final Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
+            final Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
             final Statement statement = connection.createStatement();
             final ResultSet resultSet = statement.executeQuery("SELECT * FROM design_projects");
 
@@ -41,7 +41,7 @@ public class DatabaseDAO implements MyDAO {
     @Override
     public void write(DesignProject designProject) {
 
-        try (Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
+        try (Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
              PreparedStatement statement = connection.prepareStatement("INSERT INTO design_projects (name, description, picture,creation_date) VALUES(?,?,?,?)")) {
 
             statement.setString(1, designProject.getName());
@@ -59,7 +59,7 @@ public class DatabaseDAO implements MyDAO {
     @Override
     public void delete(String id) {
 
-        try (Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
+        try (Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM design_projects WHERE id =?")) {
             preparedStatement.setString(1, id);
             preparedStatement.execute();
