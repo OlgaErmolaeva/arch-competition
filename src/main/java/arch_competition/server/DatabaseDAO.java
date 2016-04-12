@@ -12,7 +12,8 @@ import java.util.ArrayList;
  */
 public class DatabaseDAO implements MyDAO {
 
-    private static final String JDBC_URL = System.getenv("OPENSHIFT_MYSQL_DB_URL");
+    private static final String JDBC_URL = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":"
+            + System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/archcompetition";
 
     private static final String USER = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
     private static final String PASSWORD = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
