@@ -12,13 +12,15 @@ import java.util.ArrayList;
  */
 public class DatabaseDAO implements MyDAO {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/arch_competition";
-    private static final String USER = "db_admin";
-    private static final String PASSWORD = "root";
+    private static final String JDBC_URL = "jdbc:mysql//localhost:3306/archcompetition";
+    private static final String USER = "adminBTJPYhI";
+    private static final String PASSWORD = "aSsS7M-vh-V1";
 
     @Override
     public ArrayList<DesignProject> read() {
         try {
+            //TODO This is to make Tomcat happy
+//            Class.forName("com.mysql.jdbc.Driver");
             final Connection connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
             final Statement statement = connection.createStatement();
             final ResultSet resultSet = statement.executeQuery("SELECT * FROM arch_competition.design_projects");
