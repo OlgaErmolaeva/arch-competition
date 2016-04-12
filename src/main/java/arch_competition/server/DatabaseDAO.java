@@ -12,9 +12,10 @@ import java.util.ArrayList;
  */
 public class DatabaseDAO implements MyDAO {
 
-    private static final String JDBC_URL = "jdbc:mysql//localhost:3306/archcompetition";
-    private static final String USER = "adminBTJPYhI";
-    private static final String PASSWORD = "aSsS7M-vh-V1";
+    private static final String JDBC_URL = System.getenv("OPENSHIFT_MYSQL_DB_URL");
+
+    private static final String USER = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+    private static final String PASSWORD = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
 
     @Override
     public ArrayList<DesignProject> read() {
@@ -47,6 +48,7 @@ public class DatabaseDAO implements MyDAO {
     @Override
     public void write(DesignProject designProject) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             final Connection connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
             final Statement statement = connection.createStatement();
 
@@ -61,6 +63,8 @@ public class DatabaseDAO implements MyDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
     }
