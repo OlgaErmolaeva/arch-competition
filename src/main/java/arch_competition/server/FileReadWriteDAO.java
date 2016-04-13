@@ -15,6 +15,7 @@ public class FileReadWriteDAO implements MyDAO {
     private static final String FILE_PROJECT_STORE_SER = "D:/install/gwt-2.7.0/gwt-2.7.0/fileProjectStore.ser";
 
     public void write(DesignProject designProject) {
+        //TODO
         /*try (ObjectOutputStream objectWriteInStore = new ObjectOutputStream(new FileOutputStream(FILE_PROJECT_STORE_SER))) {
             objectWriteInStore.writeObject(projectStore);
         } catch (IOException e) {
@@ -24,7 +25,7 @@ public class FileReadWriteDAO implements MyDAO {
 
     @Override
     public void delete(String id) {
-
+        throw new UnsupportedOperationException();
     }
 
     public ArrayList<DesignProject> read() {
