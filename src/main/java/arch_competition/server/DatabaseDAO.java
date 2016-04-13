@@ -15,8 +15,6 @@ public class DatabaseDAO implements MyDAO {
     @Override
     public ArrayList<DesignProject> read() {
         try {
-            //TODO This is to make Tomcat happy
-//            Class.forName("com.mysql.jdbc.Driver");
             final Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
             final Statement statement = connection.createStatement();
             final ResultSet resultSet = statement.executeQuery("SELECT * FROM arch_competition.design_projects");
@@ -43,7 +41,6 @@ public class DatabaseDAO implements MyDAO {
     @Override
     public void write(DesignProject designProject) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             final Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
             final Statement statement = connection.createStatement();
 
@@ -58,10 +55,7 @@ public class DatabaseDAO implements MyDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
-
     }
 
     @Override
