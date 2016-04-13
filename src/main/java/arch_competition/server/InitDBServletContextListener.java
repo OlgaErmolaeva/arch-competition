@@ -18,6 +18,7 @@ public class InitDBServletContextListener implements ServletContextListener {
                             "('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'name' VARCHAR(255), 'description' VARCHAR(3000), " +
                             "'creation_date' DATE, 'picture' VARCHAR(255))");
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
