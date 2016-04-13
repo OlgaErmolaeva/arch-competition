@@ -5,7 +5,6 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-    <!-- Servlets -->
     <servlet>
         <servlet-name>greetServlet</servlet-name>
         <servlet-class>arch_competition.server.DesignProjectServiceImpl</servlet-class>
@@ -17,7 +16,7 @@
     </servlet>
 
     <servlet-mapping>
-    <servlet-name>DesignProjectCreationServlet</servlet-name>
+        <servlet-name>DesignProjectCreationServlet</servlet-name>
         <url-pattern>/mywebapp/designprojects/*</url-pattern>
     </servlet-mapping>
 
@@ -26,5 +25,9 @@
         <servlet-name>greetServlet</servlet-name>
         <url-pattern>/mywebapp/greet</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>arch_competition.server.InitDBServletContextListener</listener-class>
+    </listener>
 
 </web-app>

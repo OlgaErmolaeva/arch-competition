@@ -22,6 +22,8 @@ import java.util.Date;
 @MultipartConfig
 public class DesignProjectCreationServlet extends HttpServlet {
 
+    private DatabaseDAO databaseDAO = new DatabaseDAO();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -29,7 +31,6 @@ public class DesignProjectCreationServlet extends HttpServlet {
 
         if (req.getPathInfo().contains("delete")) {
             String id = req.getParameter("id");
-            DatabaseDAO databaseDAO = new DatabaseDAO();
             databaseDAO.delete(id);
         }
         if (req.getPathInfo().contains("create")) {
@@ -56,7 +57,6 @@ public class DesignProjectCreationServlet extends HttpServlet {
 
             designProject.setCreationDate(new Date());
 
-            DatabaseDAO databaseDAO = new DatabaseDAO();
             databaseDAO.write(designProject);
         }
 
