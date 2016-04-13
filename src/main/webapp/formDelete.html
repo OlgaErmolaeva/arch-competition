@@ -2,21 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>index</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/justified-nav.css" rel="stylesheet">
 </head>
 <body>
-<h1 >
-    Delete object
-</h1>
-<form action="/mywebapp/designprojects/delete" method="post">
-    Project's ID <br>
-    <input type = "text" name="id"><br><br>
 
-    <p>
-        <input type="submit">
-    </p>
+<div class="container">
+
+    <div class="masthead">
+        <h3 class="text-muted">Design project administration console</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li><a href="console.html">Home</a></li>
+                <li><a href="formCreation.html">Create projects</a></li>
+                <li class="active"><a href="formDelete.html">Delete projects</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <p class="lead">Delete project</p>
+        <form action="/mywebapp/designprojects/delete" method="post">
+            Project's ID <br>
+            <input type = "text" name="id"><br><br>
+
+            <p>
+                <input class="btn btn-lg btn-success" type="submit">
+            </p>
 
 
-</form>
+        </form>
+    </div>
+
+    <!-- Site footer -->
+    <footer class="footer">
+        <p>&copy; 2016 Olga Ermolaeva</p>
+    </footer>
+
+</div> <!-- /container -->
 </body>
 </html>

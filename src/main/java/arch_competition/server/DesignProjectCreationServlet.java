@@ -27,7 +27,7 @@ public class DesignProjectCreationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.sendRedirect("/index.html");
+        resp.sendRedirect("/console.html");
 
         if (req.getPathInfo().contains("delete")) {
             String id = req.getParameter("id");
