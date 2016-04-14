@@ -17,7 +17,7 @@ public class DatabaseDAO implements MyDAO {
         try {
             final Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
             final Statement statement = connection.createStatement();
-            final ResultSet resultSet = statement.executeQuery("SELECT * FROM arch_competition.design_projects");
+            final ResultSet resultSet = statement.executeQuery("SELECT * FROM design_projects");
 
             ArrayList<DesignProject> result = new ArrayList<>();
             while (resultSet.next()) {
@@ -40,18 +40,16 @@ public class DatabaseDAO implements MyDAO {
 
     @Override
     public void write(DesignProject designProject) {
-        try {
-            final Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
-            final Statement statement = connection.createStatement();
 
-            String projectName = designProject.getName();
-            String description = designProject.getDescription();
-            String picture = designProject.getPicture();
-            String creationDateAsString = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS").format(designProject.getCreationDate());
+        try (Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO design_projects (name, description, picture,creation_date) VALUES(?,?,?,?)")) {
 
-            statement.executeUpdate("INSERT INTO arch_competition.design_projects (name, description, picture,creation_date)" + "VALUES('" + projectName + "','" + description + "','" + picture + "','" + creationDateAsString + "') ");
+            statement.setString(1, designProject.getName());
+            statement.setString(2, designProject.getDescription());
+            statement.setString(3, designProject.getPicture());
+            statement.setDate(4, new java.sql.Date(designProject.getCreationDate().getTime()));
 
-
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -60,13 +58,11 @@ public class DatabaseDAO implements MyDAO {
 
     @Override
     public void delete(String id) {
-        try {
-            final Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
-            final PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM arch_competition.design_projects WHERE id =?");
 
+        try (Connection connection = DriverManager.getConnection(ServerConstants.JDBC_URL, ServerConstants.USER, ServerConstants.PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM design_projects WHERE id =?")) {
             preparedStatement.setString(1, id);
             preparedStatement.execute();
-
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
