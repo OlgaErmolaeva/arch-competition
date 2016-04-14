@@ -20,7 +20,7 @@
 
 <div class="container">
 
-    <div class="masthead">
+    <div class="masthead buffer">
         <h3 class="text-muted">Design project administration console</h3>
         <nav>
             <ul class="nav nav-justified">
@@ -31,28 +31,30 @@
         </nav>
     </div>
 
-    <!-- Jumbotron -->
-    <div class="jumbotron">
-        <p class="lead">Here you can create, delete projects and see results</p>
-        <form action="mywebapp/designprojects/create " method="post" enctype="multipart/form-data">
-            Project's name <br>
-            <input type="text" name="name"><br><br>
+    <p class="lead">Create new project</p>
+    <form action="mywebapp/designprojects/create " method="post" enctype="multipart/form-data" role="form">
 
-            Project's description<br>
-            <textarea name="description">&nbsp;</textarea><br>
+        <div class="row">
+            <div class="form-group col-lg-6">
+                <label>Project's name</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+        </div>
 
-            Project's picture<br>
-            <p class="lead">
-            <input type="file" name="picture"><br><br>
+        <div class="row">
+            <div class="form-group col-lg-6">
+                <label>Project's description</label>
+                <textarea name="description" rows="5" class="form-control">&nbsp;</textarea>
+            </div>
+        </div>
 
-            </p>
-            <p>
-                <input class="btn btn-lg btn-success" type="submit">
-            </p>
+        <div class="form-group">
+            <label>Project's picture</label>
+            <input type="file" name="picture">
+        </div>
 
-
-        </form>
-    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
     <!-- Site footer -->
     <footer class="footer">
