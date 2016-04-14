@@ -10,6 +10,11 @@
         <servlet-class>arch_competition.server.DesignProjectServiceImpl</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>greetServlet</servlet-name>
+        <url-pattern>/mywebapp/greet</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>DesignProjectCreationServlet</servlet-name>
         <servlet-class>arch_competition.server.DesignProjectCreationServlet</servlet-class>
@@ -20,10 +25,14 @@
         <url-pattern>/mywebapp/designprojects/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DesignProjectPicturesServlet</servlet-name>
+        <servlet-class>arch_competition.server.DesignProjectPicturesServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
-        <servlet-name>greetServlet</servlet-name>
-        <url-pattern>/mywebapp/greet</url-pattern>
+        <servlet-name>DesignProjectPicturesServlet</servlet-name>
+        <url-pattern>/pictures/*</url-pattern>
     </servlet-mapping>
 
     <listener>

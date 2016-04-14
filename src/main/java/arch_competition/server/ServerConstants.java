@@ -9,4 +9,5 @@ public interface ServerConstants {
 
     String USER = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
     String PASSWORD = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+    String DATA_DIR = System.getenv("OPENSHIFT_DATA_DIR");
 }

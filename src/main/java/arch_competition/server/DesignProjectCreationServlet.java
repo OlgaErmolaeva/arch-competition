@@ -1,7 +1,6 @@
 package arch_competition.server;
 
 
-
 import arch_competition.shared.DesignProject;
 
 import javax.servlet.ServletException;
@@ -46,14 +45,14 @@ public class DesignProjectCreationServlet extends HttpServlet {
 
             final String fileName = req.getParameter("name");
 
-            Path picturesDirectory = Paths.get("pictures");
-            if (!Files.exists(picturesDirectory))    {
+            Path picturesDirectory = Paths.get(ServerConstants.DATA_DIR, "pictures");
+            if (!Files.exists(picturesDirectory)) {
                 Files.createDirectory(picturesDirectory);
             }
             Path path = picturesDirectory.resolve(fileName);
             Files.copy(pictureInputStream, path);
 
-            designProject.setPicture("/pictures/"+ fileName);
+            designProject.setPicture("/pictures/" + fileName);
 
             designProject.setCreationDate(new Date());
 
