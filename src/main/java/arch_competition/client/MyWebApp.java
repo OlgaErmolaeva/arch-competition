@@ -30,11 +30,7 @@ public class MyWebApp implements EntryPoint {
     @Override
     public void onModuleLoad() {
 
-        DockPanel dockPanel = new DockPanel();
-        dockPanel.setWidth("100%");
-
         final CellTable<DesignProject> cellTable = new CellTable<>();
-        cellTable.setWidth("50%");
 
         TextColumn<DesignProject> nameColumn = new TextColumn<DesignProject>() {
             @Override
@@ -97,12 +93,6 @@ public class MyWebApp implements EntryPoint {
         });
 
 
-        Label north = new Label("north");
-        north.addStyleName("headerLogo");
-        dockPanel.add(north, DockPanel.NORTH);
-        dockPanel.add(cellTable, DockPanel.CENTER);
-        dockPanel.add(new Button("south"), DockPanel.SOUTH);
-
-        RootPanel.get().add(dockPanel);
+        RootPanel.get("gwtContainer").add(cellTable);
     }
 }
