@@ -12,7 +12,7 @@ import java.sql.*;
 /**
  *
  */
-public class AuthorizationServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     private ServerSettings serverSettings = ServerSettingsFactory.getServerSettings();
 
@@ -27,18 +27,23 @@ public class AuthorizationServlet extends HttpServlet {
             statement.setString(1, req.getParameter("login"));
 
             final ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
 
-            password = resultSet.getString("password");
-            name = resultSet.getString("name");
+                password = resultSet.getString("password");
+                name = resultSet.getString("name");
+                if (password.equals(req.getParameter("password"))) {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("name", name);
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
+        }finally {
+            resp.sendRedirect("index.jsp");
         }
 
-        if (password == req.getParameter("password")) {
-            HttpSession session = req.getSession();
-            session.setAttribute("name", name);
-        }
+
     }
 }

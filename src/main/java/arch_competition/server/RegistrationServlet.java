@@ -16,13 +16,24 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             try (Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
+
+                 final Statement statementValidation = connection.createStatement();
+                 final ResultSet resultSet = statementValidation.executeQuery("SELECT * FROM users WHERE login ="+ "'"+req.getParameter("login")+"'");
+
+
                  PreparedStatement statement = connection.prepareStatement("INSERT INTO users(name, login, password) VALUES(?,?,?)")) {
 
-                statement.setString(1, req.getParameter("name"));
-                statement.setString(2, req.getParameter("login"));
-                statement.setString(3, req.getParameter("password"));
+                if(!resultSet.next()) {
 
-                statement.executeUpdate();
+                    statement.setString(1, req.getParameter("name"));
+                    statement.setString(2, req.getParameter("login"));
+                    statement.setString(3, req.getParameter("password"));
+
+
+                    statement.executeUpdate();
+
+                    resp.sendRedirect("index.jsp");
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
