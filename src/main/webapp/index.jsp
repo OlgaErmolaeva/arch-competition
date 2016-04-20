@@ -34,7 +34,7 @@
             <c:choose>
                 <c:when test="${not empty name}">
                     <div class="navbar-brand">Hello, ${name}!</div>
-                 <form action="logout" method="post" class="navbar-form navbar-right">
+                    <form action="logout" method="post" class="navbar-form navbar-right">
                         <button type="submit" class="btn btn-success">Sign out</button>
 
                     </form>
@@ -62,8 +62,26 @@
             <h3 class="text-muted">Design projects</h3>
         </div>
 
-        <div id="gwtContainer"></div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Picture</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            <c:forEach var="designProject" items="${requestScope.get('designProjects')}">
+                <tr>
+                    <td>${designProject.getName()}</td>
+                    <td>${designProject.getDescription()}</td>
+                    <td><img src="${designProject.getPicture()}" height="120"></td>
+                </tr>
+            </c:forEach>
+
+            </tbody>
+        </table>
 
     </div>
 

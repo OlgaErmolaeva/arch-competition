@@ -6,13 +6,13 @@
   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
 
     <servlet>
-        <servlet-name>greetServlet</servlet-name>
-        <servlet-class>arch_competition.server.DesignProjectServiceImpl</servlet-class>
+        <servlet-name>MainPageServlet</servlet-name>
+        <servlet-class>arch_competition.server.MainPageServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>greetServlet</servlet-name>
-        <url-pattern>/mywebapp/greet</url-pattern>
+        <servlet-name>MainPageServlet</servlet-name>
+        <url-pattern>/main-page</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -66,5 +66,9 @@
     <listener>
         <listener-class>arch_competition.server.InitDBServletContextListener</listener-class>
     </listener>
+
+    <welcome-file-list>
+        <welcome-file>main-page</welcome-file>
+    </welcome-file-list>
 
 </web-app>
