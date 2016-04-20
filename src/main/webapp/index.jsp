@@ -34,6 +34,10 @@
             <c:choose>
                 <c:when test="${not empty name}">
                     <div class="navbar-brand">Hello, ${name}!</div>
+                 <form action="logout" method="post" class="navbar-form navbar-right">
+                        <button type="submit" class="btn btn-success">Sign out</button>
+
+                    </form>
                 </c:when>
                 <c:otherwise>
                     <form action="login" method="post" class="navbar-form navbar-right">
