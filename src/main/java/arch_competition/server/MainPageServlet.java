@@ -17,6 +17,6 @@ public class MainPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArrayList<DesignProject> designProjectArrayList = databaseDAO.read();
         req.setAttribute("designProjects", designProjectArrayList);
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

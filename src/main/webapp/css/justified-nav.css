@@ -2,6 +2,10 @@ body {
     padding-top: 20px;
 }
 
+.tableContainer {
+    padding-top: 50px;
+}
+
 .buffer {
     margin-bottom: 20px;
 }

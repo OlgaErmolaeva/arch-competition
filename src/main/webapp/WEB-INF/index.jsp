@@ -15,9 +15,9 @@
     <title>index</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/justified-nav.css" rel="stylesheet">
+    <link href="../css/justified-nav.css" rel="stylesheet">
 
     <script type="text/javascript" language="javascript" src="mywebapp/mywebapp.nocache.js"></script>
 </head>
@@ -48,7 +48,7 @@
                             <input type="password" name="password" placeholder="Password" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
-                        <a href="registration.html" class="btn btn-success">Sign up</a>
+                        <a href="../registration.html" class="btn btn-success">Sign up</a>
                     </form>
                 </c:otherwise>
             </c:choose>
@@ -56,7 +56,7 @@
     </div>
 </nav>
 
-<div class="jumbotron">
+<div class="tableContainer">
     <div class="container">
         <div class="masthead buffer">
             <h3 class="text-muted">Design projects</h3>

@@ -32,7 +32,7 @@ public class RegistrationServlet extends HttpServlet {
 
                     statement.executeUpdate();
 
-                    resp.sendRedirect("index.jsp");
+                    resp.sendRedirect("/");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

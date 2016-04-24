@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
             throw new RuntimeException(e);
         }finally {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("/");
         }
 
 
