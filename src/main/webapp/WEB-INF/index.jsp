@@ -18,8 +18,6 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../css/justified-nav.css" rel="stylesheet">
-
-    <script type="text/javascript" language="javascript" src="mywebapp/mywebapp.nocache.js"></script>
 </head>
 
 <body>
