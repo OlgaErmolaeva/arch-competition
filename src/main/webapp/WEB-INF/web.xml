@@ -54,6 +54,7 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>LogOutServlet</servlet-name>
         <servlet-class>arch_competition.server.LogOutServlet</servlet-class>
@@ -63,6 +64,17 @@
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VotingServlet</servlet-name>
+        <servlet-class>arch_competition.server.VotingServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VotingServlet</servlet-name>
+        <url-pattern>/voting</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>arch_competition.server.InitDBServletContextListener</listener-class>
     </listener>

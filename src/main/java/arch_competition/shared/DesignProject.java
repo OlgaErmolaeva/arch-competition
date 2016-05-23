@@ -9,7 +9,7 @@ public class DesignProject implements Serializable {
     private String name;
     private String description;
     private String picture;
-    private Investor investor;
+    private String votes;
     private Date creationDate;
     private String id;
 
@@ -43,12 +43,12 @@ public class DesignProject implements Serializable {
         this.picture = picture;
     }
 
-    public Investor getInvestor() {
-        return investor;
+    public String getVotes() {
+        return votes;
     }
 
-    public void setInvestor(Investor investor) {
-        this.investor = investor;
+    public void setVotes(String votes) {
+        this.votes = votes;
     }
 
     public Date getCreationDate() {

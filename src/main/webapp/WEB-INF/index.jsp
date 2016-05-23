@@ -66,6 +66,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Picture</th>
+                <th>Votes</th>
             </tr>
             </thead>
             <tbody>
@@ -75,6 +76,11 @@
                     <td>${designProject.getName()}</td>
                     <td>${designProject.getDescription()}</td>
                     <td><img src="${designProject.getPicture()}" height="120"></td>
+                    <td>
+                        <form action="voting" method="post">
+                            <button type="submit" class="btn btn-success">Vote</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
 

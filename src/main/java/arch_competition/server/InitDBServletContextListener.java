@@ -29,12 +29,14 @@ public class InitDBServletContextListener implements ServletContextListener {
                             "name VARCHAR(255), " +
                             "description VARCHAR(3000), " +
                             "creation_date DATE, " +
+                            "votes INTEGER, "+
                             "picture VARCHAR(255))");
 // create table for users name and password
             statement.executeUpdate(
                     "CREATE TABLE if not exists users " +
                             "(name VARCHAR(255)PRIMARY KEY, " +
                             "login VARCHAR(50), " +
+                            "id INTEGER, "+ // elected project
                             "password VARCHAR(50)) ");
         } catch (SQLException e) {
             e.printStackTrace();
