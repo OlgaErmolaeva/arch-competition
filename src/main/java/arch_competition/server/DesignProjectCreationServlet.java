@@ -56,7 +56,7 @@ public class DesignProjectCreationServlet extends HttpServlet {
 
             designProject.setCreationDate(new Date());
 
-            databaseDAO.write(designProject);
+            databaseDAO.create(designProject);
         }
 
     }

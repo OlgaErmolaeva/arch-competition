@@ -22,16 +22,19 @@
 
 <body>
 
+<c:set var="user" value="${sessionScope.get('user')}"/>
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
 
 
         <div id="navbar" class="navbar-collapse collapse">
 
-            <c:set var="name" value="${sessionScope.get('name')}"/>
+
             <c:choose>
-                <c:when test="${not empty name}">
-                    <div class="navbar-brand">Hello, ${name}!</div>
+                <c:when test="${not empty user}">
+                    <div class="navbar-brand">Hello, ${user.name}!</div>
                     <form action="logout" method="post" class="navbar-form navbar-right">
                         <button type="submit" class="btn btn-success">Sign out</button>
 
@@ -77,9 +80,34 @@
                     <td>${designProject.getDescription()}</td>
                     <td><img src="${designProject.getPicture()}" height="120"></td>
                     <td>
-                        <form action="voting" method="post">
-                            <button type="submit" class="btn btn-success">Vote</button>
-                        </form>
+
+                        <c:choose>
+                            <c:when test="${not empty user}">
+                                <c:choose>
+                                    <c:when test="${user.selectedProjectId != 0}">
+                                        ${designProject.getVotes()}
+                                        <c:if test="${user.selectedProjectId == designProject.id}">
+                                                You selected this project
+                                        </c:if>
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${requestScope.get('usersVote')}
+                                        <form action="voting" method="post">
+                                            <div>
+                                                <input type="hidden" name="button" value="${designProject.getId()}">
+                                                <input type="hidden" name="user" value="${sessionScope.get('name')}">
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Vote</button>
+                                        </form>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:when>
+                            <c:otherwise>
+                                You should log in to vote
+                            </c:otherwise>
+                        </c:choose>
+
                     </td>
                 </tr>
             </c:forEach>

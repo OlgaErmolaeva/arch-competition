@@ -26,7 +26,9 @@ public class DatabaseDAO implements MyDAO {
                 designProject.setName(resultSet.getString("name"));
                 designProject.setDescription(resultSet.getString("description"));
                 designProject.setCreationDate(resultSet.getDate("creation_date"));
+                designProject.setId(resultSet.getString("id"));
                 designProject.setPicture(resultSet.getString("picture"));
+                designProject.setVotes(resultSet.getString("votes"));
 
                 result.add(designProject);
 
@@ -39,15 +41,16 @@ public class DatabaseDAO implements MyDAO {
     }
 
     @Override
-    public void write(DesignProject designProject) {
+    public void create(DesignProject designProject) {
 
         try (Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO design_projects (name, description, picture,creation_date) VALUES(?,?,?,?)")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO design_projects (name, description, picture,creation_date,votes) VALUES(?,?,?,?,?)")) {
 
             statement.setString(1, designProject.getName());
             statement.setString(2, designProject.getDescription());
             statement.setString(3, designProject.getPicture());
             statement.setDate(4, new java.sql.Date(designProject.getCreationDate().getTime()));
+            statement.setString(5,"0");
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -68,5 +71,8 @@ public class DatabaseDAO implements MyDAO {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void update(DesignProject designProject) {
     }
 }

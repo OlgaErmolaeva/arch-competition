@@ -10,8 +10,10 @@ public interface MyDAO {
 
     ArrayList<DesignProject> read();
 
-    void write(DesignProject designProject);
+    void create(DesignProject designProject);
 
     void delete(String id);
+
+    void update (DesignProject designProject);
 
     }

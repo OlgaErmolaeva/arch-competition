@@ -21,13 +21,14 @@ public class RegistrationServlet extends HttpServlet {
                  final ResultSet resultSet = statementValidation.executeQuery("SELECT * FROM users WHERE login ="+ "'"+req.getParameter("login")+"'");
 
 
-                 PreparedStatement statement = connection.prepareStatement("INSERT INTO users(name, login, password) VALUES(?,?,?)")) {
+                 PreparedStatement statement = connection.prepareStatement("INSERT INTO users(name, login,id, password) VALUES(?,?,?,?)")) {
 
                 if(!resultSet.next()) {
 
                     statement.setString(1, req.getParameter("name"));
                     statement.setString(2, req.getParameter("login"));
-                    statement.setString(3, req.getParameter("password"));
+                    statement.setString(3,"0");
+                    statement.setString(4, req.getParameter("password"));
 
 
                     statement.executeUpdate();
