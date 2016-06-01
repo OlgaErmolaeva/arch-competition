@@ -21,8 +21,9 @@ public class VotingServlet extends HttpServlet {
         String login = user.getLogin();
 
 
-        try {
-            Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
+        try (Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword())) {
+
+            connection.setAutoCommit(false);
 
             // insert id of elected project
             PreparedStatement statementToUsers = connection.prepareStatement("UPDATE users SET id = ? WHERE login = ?");
@@ -32,19 +33,13 @@ public class VotingServlet extends HttpServlet {
             statementToUsers.executeUpdate();
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-        try {
-            Connection connection = DriverManager.getConnection(serverSettings.getJdbcUrl(), serverSettings.getUser(), serverSettings.getPassword());
-
             // add votes to projects
             PreparedStatement statementToProjects = connection.prepareStatement("UPDATE design_projects SET votes = votes+1 WHERE id = ?");
 
             statementToProjects.setString(1, idButton);
             statementToProjects.executeUpdate();
 
+            connection.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
